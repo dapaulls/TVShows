@@ -66,7 +66,7 @@
                 <asp:CheckBoxField DataField="Watched" HeaderText="Watched" 
                     SortExpression="Watched" />
                 <asp:HyperLinkField DataNavigateUrlFields="IMDb" 
-                    DataNavigateUrlFormatString="http://www.imdb.com/title/{0}" 
+                    DataNavigateUrlFormatString="http://www.imdb.com/title/{0}" target="_blank"
                     Text="&lt;img src='Images/IMDbLogo.jpg' alt='Link to IMDb' border='0'/&gt;" 
                     HeaderText="IMDb Link" />
             </Columns>
