@@ -52,7 +52,7 @@
                 </asp:BoundField>
                 <asp:ImageField DataImageUrlField="Position" 
                     DataImageUrlFormatString="Images/{0}.jpg" 
-                    AlternateText="No image available.">
+                    AlternateText="No image available." NullDisplayText="No Image Available">
                 </asp:ImageField>
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" >
                 <ItemStyle Font-Bold="True" />

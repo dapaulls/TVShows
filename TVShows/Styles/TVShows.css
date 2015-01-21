@@ -1,5 +1,7 @@
 ﻿body {font-family: Verdana, Geneva, Arial, Sans-Serif;
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+      width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+      font-size: smaller;
+      background-color: #EFF3FB;
 }
