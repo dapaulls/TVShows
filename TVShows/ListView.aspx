@@ -12,27 +12,35 @@
     <div>
     <h1 align="center">Top 100 TV Shows to watch on Catch-up</h1>
     <h2 align="center">(according to the Radio Times - January 2015)</h2>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        <asp:SqlDataSource ID="Top100TVShowsSqlDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:TVShowsConnectionString %>" 
             
-            SelectCommand="SELECT * FROM [Top100TVShows] ORDER BY [Position]"></asp:SqlDataSource>
+            SelectCommand="SELECT * FROM [Top100TVShows] ORDER BY [Position]">
+        </asp:SqlDataSource>
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="TVShowID" 
-            DataSourceID="SqlDataSource1" GroupItemCount="3">
+            DataSourceID="Top100TVShowsSqlDataSource" GroupItemCount="3">
             <AlternatingItemTemplate>
                 <td runat="server" style="background-color:#FFF8DC;" align="center" valign="top">
                     <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' Font-Bold="True" />.
                     <asp:Label ID="TitleLabel" runat="server" Text='<%# Eval("Title") %>' Font-Bold="True" />
-                    <br />
-                    <asp:HyperLink ID="IMDbHyperLink" runat="server" ToolTip="Go to IMDb Page" ImageUrl='<%#"~/images/" + 
-               Eval("Position") + ".jpg" %>' NavigateUrl='<%# "http://www.imdb.com/title/" + Eval("IMDb") %>' target="_blank" Height="200">HyperLink</asp:HyperLink>
-
-                    <br />
-                    No of Series:
+                    <br /><br />
+                    <asp:HyperLink ID="IMDbHyperLink" runat="server" ToolTip="Go to IMDb Page" 
+                    ImageUrl='<%#"~/images/" + Eval("IMDb") + ".jpg" %>' 
+                    NavigateUrl='<%# "http://www.imdb.com/title/" + Eval("IMDb") %>' target="_blank" Width="250px">HyperLink</asp:HyperLink>
+                    Number of Series:
                     <asp:Label ID="NoOfSeriesLabel" runat="server" Text='<%# Eval("NoOfSeries") %>' />
                     <br />
-                    No of Episodes:
+                    Number of Episodes:
                     <asp:Label ID="NoOfEpisodesLabel" runat="server" Text='<%# Eval("NoOfEpisodes") %>' />
-                    <br />                   
+                    <br />
+                    Want to Watch:
+                    <asp:CheckBox ID="WantToWatchCheckBox" runat="server" 
+                        Checked='<%# Eval("WantToWatch") %>' Enabled="false" />
+                    <br />
+                    Watched:
+                    <asp:CheckBox ID="WatchedCheckBox" runat="server" 
+                        Checked='<%# Eval("Watched") %>' Enabled="false" />                 
+                    <br /> 
                 </td>
             </AlternatingItemTemplate>
             <EditItemTemplate>
@@ -129,23 +137,39 @@
                 <td runat="server" style="background-color:#DCDCDC;color: #000000;" align="center" valign="top">
                     <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' Font-Bold="True" />.
                     <asp:Label ID="TitleLabel" runat="server" Text='<%# Eval("Title") %>' Font-Bold="True" />
-                    <br />
-                    <asp:HyperLink ID="IMDbHyperLink" runat="server" ToolTip="Go to IMDb Page" ImageUrl='<%#"~/images/" + 
-               Eval("Position") + ".jpg" %>' NavigateUrl='<%# "http://www.imdb.com/title/" + Eval("IMDb") %>' target="_blank" Height="200">HyperLink</asp:HyperLink>
-
-                    <br />
-                    No of Series:
+                    <br /><br />
+                    <asp:HyperLink ID="IMDbHyperLink" runat="server" ToolTip="Go to IMDb Page" 
+                    ImageUrl='<%#"~/images/" + Eval("IMDb") + ".jpg" %>' 
+                    NavigateUrl='<%# "http://www.imdb.com/title/" + Eval("IMDb") %>' target="_blank" Width="250px">HyperLink</asp:HyperLink>
+                    Number of Series:
                     <asp:Label ID="NoOfSeriesLabel" runat="server" Text='<%# Eval("NoOfSeries") %>' />
                     <br />
-                    No of Episodes:
+                    Number of Episodes:
                     <asp:Label ID="NoOfEpisodesLabel" runat="server" Text='<%# Eval("NoOfEpisodes") %>' />
-                    <br /> 
-                    
-                        
+                    <br />
+                    Want to Watch:
+                    <asp:CheckBox ID="WantToWatchCheckBox" runat="server" 
+                        Checked='<%# Eval("WantToWatch") %>' Enabled="false" />
+                    <br />
+                    Watched:
+                    <asp:CheckBox ID="WatchedCheckBox" runat="server" 
+                        Checked='<%# Eval("Watched") %>' Enabled="false" />                 
+                    <br />
                 </td>
             </ItemTemplate>
             <LayoutTemplate>
                 <table runat="server">
+                    <tr id="Tr1" runat="server">
+                        <td id="Td1" runat="server" 
+                            style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
+                            <asp:DataPager ID="DataPager2" runat="server" PageSize="12">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" 
+                                        ShowLastPageButton="True" />
+                                </Fields>
+                            </asp:DataPager>
+                        </td>
+                    </tr>
                     <tr runat="server">
                         <td runat="server">
                             <table ID="groupPlaceholderContainer" runat="server" border="1" 
@@ -158,6 +182,12 @@
                     <tr runat="server">
                         <td runat="server" 
                             style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;">
+                            <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" 
+                                        ShowLastPageButton="True" />
+                                </Fields>
+                            </asp:DataPager>
                         </td>
                     </tr>
                 </table>

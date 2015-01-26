@@ -50,7 +50,7 @@
                     SortExpression="Position" >
                 <ItemStyle Font-Bold="True" />
                 </asp:BoundField>
-                <asp:ImageField DataImageUrlField="Position" 
+                <asp:ImageField DataImageUrlField="IMDb" 
                     DataImageUrlFormatString="Images/{0}.jpg" 
                     AlternateText="No image available." NullDisplayText="No Image Available">
                 </asp:ImageField>
